@@ -89,7 +89,7 @@ Removed
 | Command | Description |
 |----------|-------------|
 | `docker run IMAGE` | Create and start a container |
-| `docker run --name container_name IMAGE` | |Create a named container with the existing image|
+| `docker run --name container_name IMAGE` | Create a named container with the existing image |
 | `docker run -d IMAGE` | Run container in detached mode |
 | `docker run -it IMAGE` | Interactive terminal |
 | `docker ps` | List running containers |
