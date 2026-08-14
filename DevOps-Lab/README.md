@@ -286,7 +286,6 @@ Inside **`ansible-controller`** (Window 1):
            url: "https://dl.k8s.io/release/v1.30.0/bin/linux/amd64/kubectl"
            dest: /usr/local/bin/kubectl
            mode: '0755'
-   EOF
    ```
 
 ---
