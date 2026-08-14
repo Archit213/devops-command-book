@@ -1,0 +1,51 @@
+cat <<'EOF' > setup-docker-minikube.yml
+---
+- name: Provision Docker and Minikube on Target Node
+  hosts: targets
+  become: yes
+  tasks:
+
+    - name: Update apt repository and cache
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+
+    - name: Install required system packages
+      apt:
+        name:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - gnupg
+          - lsb-release
+          - conntrack
+        state: present
+
+    - name: Install Docker Engine
+      apt:
+        name: docker.io
+        state: latest
+
+    - name: Ensure Docker service is running and enabled
+      systemd:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Add vagrant user to docker group
+      user:
+        name: vagrant
+        groups: docker
+        append: yes
+
+    - name: Download and install Minikube binary
+      get_url:
+        url: [https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64](https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64)
+        dest: /usr/local/bin/minikube
+        mode: '0755'
+
+    - name: Download and install Kubectl binary
+      get_url:
+        url: "[https://dl.k8s.io/release/v1.30.0/bin/linux/amd64/kubectl](https://dl.k8s.io/release/v1.30.0/bin/linux/amd64/kubectl)"
+        dest: /usr/local/bin/kubectl
+        mode: '0755'
