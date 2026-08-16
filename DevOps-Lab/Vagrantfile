@@ -1,26 +1,28 @@
 Vagrant.configure("2") do |config|
-  config.vm.box = "ubuntu/jammy64" # Ubuntu 22.04 LTS
+  config.vm.box = "ubuntu/jammy64"
 
   # 1. Ansible Controller Node
   config.vm.define "ansible-controller" do |node|
     node.vm.hostname = "ansible-controller"
     node.vm.network "private_network", ip: "192.168.56.10"
     node.vm.provider "virtualbox" do |vb|
+      vb.name = "ansible-controller"
       vb.memory = "2048"
       vb.cpus = 2
+      vb.linked_clone = true
     end
   end
 
-  # 2. Target Server (Needs >= 2 CPUs and 4GB RAM for Minikube)
+  # 2. Target Server
   config.vm.define "target-node" do |node|
     node.vm.hostname = "target-node"
     node.vm.network "private_network", ip: "192.168.56.20"
     node.vm.provider "virtualbox" do |vb|
+      vb.name = "target-node"
       vb.memory = "4096"
       vb.cpus = 2
-      # Nested virtualization is required for Minikube inside VirtualBox
+      vb.linked_clone = true
       vb.customize ["modifyvm", :id, "--nested-hw-virt", "on"]
     end
   end
-  
 end
