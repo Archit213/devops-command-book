@@ -151,6 +151,10 @@ end
    ```
    *Both machines should display `running (virtualbox)`.*
 
+5. Reload Target VM if SSH connection is not there:
+  ```bash
+    vagrant reload target-node
+  ```
 ---
 
 ### Step 2: Connect to VMs via SSH
