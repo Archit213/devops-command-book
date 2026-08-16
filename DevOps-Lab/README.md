@@ -151,10 +151,6 @@ end
    ```
    *Both machines should display `running (virtualbox)`.*
 
-5. Reload Target VM if SSH connection is not there:
-  ```bash
-    vagrant reload target-node
-  ```
 ---
 
 ### Step 2: Connect to VMs via SSH
@@ -170,7 +166,10 @@ vagrant ssh ansible-controller
 ```bash
 vagrant ssh target-node
 ```
-
+Reload Target VM if SSH connection is not there:
+  ```bash
+    vagrant reload target-node
+  ```
 ---
 
 ### Step 3: Setup Passwordless SSH (Controller -> Target)
