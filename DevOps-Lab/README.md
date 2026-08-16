@@ -168,7 +168,7 @@ vagrant ssh target-node
 ```
 Reload Target VM if SSH connection is not there:
   ```bash
-    vagrant reload target-node
+vagrant reload target-node
   ```
 ---
 
@@ -325,9 +325,9 @@ Switch to **Window 2 (`target-node`)**:
 
 3. Start your single-node Minikube cluster:
    ```bash
-   minikube start --driver=docker --memory=2200mb
+   minikube start --driver=docker --memory=2200mb --cpus=2 --wait-timeout-10m
    ```
-
+   
 4. Verify cluster health:
    ```bash
    minikube status
