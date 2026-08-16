@@ -325,15 +325,10 @@ Switch to **Window 2 (`target-node`)**:
 
 3. Start your single-node Minikube cluster:
    ```bash
-   minikube start --driver=docker
+   minikube start --driver=docker --memory=2200mb
    ```
 
-4. If you want to prevent that memory warning on future restarts, specify a lower memory limit:
-  ```bash
-  minikube start --driver=docker --memory=2200mb
-  ```
-
-5. Verify cluster health:
+4. Verify cluster health:
    ```bash
    minikube status
    kubectl get nodes
